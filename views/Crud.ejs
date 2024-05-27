@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="caretipsApp">
+<head>
+  <title>Caretips App</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link rel="stylesheet" type= "text/css" href="resources/styles/Crud.css">
+  <script src="resources/script/Crud.js"></script>
+</head>
+<body>
+  <div class="container" ng-controller="CaretipsController">
+    <h1>Location-Driven Pet Care Tips: Customized Advice for You!</h1>
+    <form ng-submit="addCaretip()">
+      <input type="text" ng-model="newCaretip.Type" placeholder="Type" required>
+      <input type="text" ng-model="newCaretip.Title" placeholder="Title" required>
+      <input type="text" ng-model="newCaretip.Description" placeholder="Description" required>
+      <input type="text" ng-model="newCaretip.Location" placeholder="Location" required>
+      <button type="submit">Add Caretip</button>
+    </form>
+    <ul>
+      <li ng-repeat="caretip in caretips">
+        <span>{{caretip.Type}} - {{caretip.Title}} - {{caretip.Description}} - {{caretip.Location}}</span>
+        <button class="btn btn-danger" ng-click="deleteCaretip(caretip._id)">Delete</button>
+        <button class="btn btn-info" ng-click="selectCaretip(caretip)">Edit</button>
+      </li>
+    </ul>
+    <div ng-if="selectedCaretip" class="edit-form">
+      <h2>Edit Caretip</h2>
+      <form ng-submit="updateCaretip()">
+        <input type="text" ng-model="selectedCaretip.Type" required>
+        <input type="text" ng-model="selectedCaretip.Title" required>
+        <input type="text" ng-model="selectedCaretip.Description" required>
+        <input type="text" ng-model="selectedCaretip.Location" required>
+        <button type="submit">Update Caretip</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
